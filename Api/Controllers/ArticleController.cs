@@ -16,16 +16,16 @@ public class ArticleController : ControllerBase
     
     [HttpPost]
     [Route("/api/articles")]
-    public Article CreateArticle([FromBody] CreateArticleRequestDto article)
+    public Article CreateArticle([FromBody] CreateOrUpdateArticleRequestDto orUpdateArticle)
     {
-        return _articleService.CreateArticle(article);
+        return _articleService.CreateArticle(orUpdateArticle);
     }
     
-    /*[HttpGet]
+    [HttpGet]
     [Route("/api/feed")]
-    public IEnumerable<Article> GetArticles()
+    public IEnumerable<NewsFeedItem> GetNewsFeed()
     {
-        return _articleService.GetAllArticles();
+        return _articleService.GetNewsFeed();
     }
     
     [HttpGet]
@@ -44,10 +44,11 @@ public class ArticleController : ControllerBase
     
     [HttpPut]
     [Route("/api/articles/{articleId}")]
-    public Article UpdateArticle([FromBody] Article article, [FromRoute] int articleId)
+    public Article UpdateArticle([FromBody] CreateOrUpdateArticleRequestDto article, [FromRoute] int articleId)
     {
         return _articleService.UpdateArticle(article, articleId);
-    }*/
+    }
+    
     
     /*Search for Articles: Users should be able to search for articles.
      The client will include the search term and page size in the query parameters. 
@@ -55,4 +56,11 @@ public class ArticleController : ControllerBase
      Results may not exceed the page size.
 
     Endpoint: GET http://localhost:5000/api/articles?searchterm=X&pagesize=X*/
+    
+    [HttpGet]
+    [Route("/api/articles")]
+    public IEnumerable<SearchArticleItem> SearchArticles([FromQuery] string searchterm, [FromQuery] int pagesize)
+    {
+        return _articleService.SearchArticles(searchterm, pagesize);
+    }
 }

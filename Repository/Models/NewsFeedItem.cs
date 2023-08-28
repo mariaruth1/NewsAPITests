@@ -1,4 +1,6 @@
-﻿namespace Repository.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Repository.Models;
 
 public class NewsFeedItem
 {
