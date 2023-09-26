@@ -1,0 +1,32 @@
+  <h1 class="welcome-text">Create Article</h1>
+  <p>Fill out all fields...</p>
+  <div class="input-fields">
+    <ion-input placeholder="Enter title" [formControl]="headerInput" type="text"></ion-input>
+    <br>
+    <ion-input placeholder="Enter body text" [formControl]="bodyInput" type="text"></ion-input>
+    <br>
+    <ion-input placeholder="Enter Bob, Rob or Lob" [formControl]="authorInput" type="text"></ion-input>
+    <br>
+    <ion-input placeholder="Enter image URL" [formControl]="urlInput" type="text"></ion-input>
+    <br>
+    <button [disabled]="inputGroup.invalid" (click)="send()">Submit</button>
+  </div>
+
+  <h1>News Articles</h1>
+<ion-card *ngFor="let a of articles">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <img ngSrc="https://plus.unsplash.com/premium_photo-1695207505941-1a331ee19385?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Image" fill="">
+      </ion-col>
+      <ion-col size="8">
+        <ion-card-title>{{a.headline}}</ion-card-title>
+        <ion-card-subtitle>{{a.author}}</ion-card-subtitle>
+        <ion-card-content>{{a.body}}</ion-card-content>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="delete()">Delete Article</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
